@@ -1,0 +1,92 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class frmprincipal extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JMenuItem mntmLibro;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frmprincipal frame = new frmprincipal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public frmprincipal() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnMantenimiento = new JMenu("Mantenimiento");
+		menuBar.add(mnMantenimiento);
+		
+		JMenuItem mntmEmpleado = new JMenuItem("Empleado");
+		mnMantenimiento.add(mntmEmpleado);
+		
+		JMenuItem mntmLector = new JMenuItem("Lector");
+		mnMantenimiento.add(mntmLector);
+		
+		JMenuItem mntmUsuario = new JMenuItem("usuario");
+		mnMantenimiento.add(mntmUsuario);
+		
+		mntmLibro = new JMenuItem("libro");
+		mntmLibro.addActionListener(this);
+		mnMantenimiento.add(mntmLibro);
+		
+		JMenu mnProceso = new JMenu("Proceso");
+		menuBar.add(mnProceso);
+		
+		JMenuItem mntmBoleta = new JMenuItem("Boleta");
+		mnProceso.add(mntmBoleta);
+		
+		JMenuItem mntmTraslado = new JMenuItem("traslado");
+		mnProceso.add(mntmTraslado);
+		
+		JMenu mnConsulta = new JMenu("Consulta");
+		menuBar.add(mnConsulta);
+		
+		JMenu mnReportes = new JMenu("Reportes");
+		menuBar.add(mnReportes);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmLibro) {
+			actionPerformedMntmLibro(e);
+		}
+	}
+	protected void actionPerformedMntmLibro(ActionEvent e) {
+		frmlibro l= new frmlibro();
+		l.setLocationRelativeTo(l);
+		l.setVisible(true);
+	}
+}
